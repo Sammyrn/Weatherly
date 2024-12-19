@@ -1,0 +1,27 @@
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    transition: all 1s ease-in-out;
+}
+
+.loadtext{
+    font-size: 1cm;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+.img{
+    animation: sun 4s infinite linear;
+    
+}
+@keyframes sun {
+    0%{
+        transform: rotate(0deg)
+    }
+    100%{
+        transform: rotate(360deg)
+    }
+    
+}

@@ -1,21 +1,32 @@
 import "./App.css";
+import Forecast from "./components/forecast/forecast";
 import Search from "./components/search/search";
+import Loading from "./components/loading/Loading";
 import CurrentWeather from "./components/current-weather/current-weather";
 import { WEATHER_API_KEY, WEATHER_API_URL } from "./api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-  const { currentWeather, setCurrentWeather } = useState(null);
-  const { forecast, setForecast } = useState(null);
+  const [currentWeather, setCurrentWeather] = useState(null);
+  const [forecast, setForecast] = useState(null);
+
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 4000);
+  }, []);
 
   const handleOnSearchChange = (searchData) => {
     const [lat, lon] = searchData.value.split(" ");
 
     const currentWeatherFetch = fetch(
-      `${WEATHER_API_URL}/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`
+      `${WEATHER_API_URL}/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`
     );
     const forecastFetch = fetch(
-      `${WEATHER_API_URL}/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}`
+      `${WEATHER_API_URL}/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`
     );
 
     Promise.all([currentWeatherFetch, forecastFetch])
@@ -28,10 +39,16 @@ function App() {
       })
       .catch((err) => console.log(err));
   };
-  return (
+
+  console.log(currentWeather);
+  console.log(forecast);
+  return loading ? (
+    <Loading />
+  ) : (
     <div className="wrapper">
       <Search onSearchChange={handleOnSearchChange} />
-      {currentWeather && <CurrentWeather data={currentWeather}  />}
+      {currentWeather && <CurrentWeather data={currentWeather} />}
+      <Forecast data={forecast} />
     </div>
   );
 }

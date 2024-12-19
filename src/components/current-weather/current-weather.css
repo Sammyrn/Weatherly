@@ -1,11 +1,12 @@
 .weather{
     width: 300px;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 10px -2px -20px 2px hsla(0, 0%, 0%, 0.3);
-    color: #fff;
-    background-color: #333;
+    color: #dafcfc;
+    background-color: #131817cc;
     margin: 20px auto 0 auto;
-    padding: 10px 20px 20px 20px;
+    padding: 20px;
+    
 }
 .top, .bottom{
     display: flex;
@@ -14,29 +15,21 @@
 }
 .city{
     font-weight: 600;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1;
     margin: 0;
     letter-spacing: 1px;
 }
 .weather-description{
-    font-weight: 400;
-    font-size: 14px;
+    font-weight: 500;
+    font-size: 15px;
     line-height: 1;
     margin: 0;
+    text-transform: capitalize;
 
 }
 .weather-icon{
     width: 90px;
-    animation: App-logo-spin infinite 20s linear;
-}
-@keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
 }
 .temperature {
     font-weight: 600;
@@ -55,8 +48,8 @@
 }
 .parameter-label{
     text-align: left;
-    font-weight: 500;
-    font-size: 12px;
+    font-weight: 600;
+    font-size: 13px;
 }
 .parameter-value{
     text-align: right;
